@@ -1,0 +1,5 @@
+*.o
+bin2rom
+froot1
+rom2bin
+.vscode
