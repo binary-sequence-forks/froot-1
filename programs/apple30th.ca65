@@ -1,0 +1,2199 @@
+          * = $0280
+          LDA #$FF
+          PHA
+          LDA #$00
+          PHA
+L0286     LDA #$2D
+          STA $06
+          LDA #$03
+          STA $07
+L028E     JSR L0315
+L0291     LDY #$00
+          LDA ($06),Y
+          BEQ L02B2
+          LSR A
+          LSR A
+          LSR A
+          LSR A
+          TAX
+          LDA ($06),Y
+          AND #$0F
+          TAY
+          LDA $031D,Y
+L02A4     JSR $FFEF
+          DEX
+          BNE L02A4
+          INC $06
+          BNE L0291
+          INC $07
+          BNE L0291
+L02B2     INY
+          SEC
+          LDA #$28
+          SBC ($06),Y
+          LSR A
+          TAX
+          LDA #$A0
+L02BC     JSR $FFEF
+          DEX
+          BNE L02BC
+          LDA ($06),Y
+          TAX
+L02C5     INY
+          LDA ($06),Y
+          JSR $FFEF
+          DEX
+          BNE L02C5
+          INY
+          TYA
+          CLC
+          ADC $06
+          STA $06
+          LDA #$00
+          ADC $07
+          STA $07
+          LDA #$10
+          JSR L02EB
+          JSR L0315
+          LDY #$00
+          LDA ($06),Y
+          BEQ L0286
+          BNE L028E
+L02EB     PHA
+          TXA
+          PHA
+          TYA
+          PHA
+          LDY #$FF
+L02F2     LDX #$FF
+L02F4     LDA $D011
+          BPL L0302
+          PLA
+          TAY
+          PLA
+          TAX
+          PLA
+          LDA $D010
+          RTS
+L0302     DEX
+          BNE L02F4
+          DEY
+          BNE L02F2
+          PLA
+          TAY
+          PLA
+          TAX
+          PLA
+          SEC
+          SBC #$01
+          BNE L02EB
+          LDA #$00
+          RTS
+L0315     PHA
+          LDA #$8D
+          JSR $FFEF
+          PLA
+          RTS
+          LDY #$AE
+          TSX
+          LDY $A1BB
+          LDA $ABDE
+          LDA $A6BF,X
+          TAX
+          LDA $A3
+          CPY #$FF
+          .BYTE $1F    ;%00011111
+          .BYTE $1B    ;%00011011
+          .BYTE $17    ;%00010111
+          ASL $14,X
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          .BYTE $1B    ;%00011011
+          ASL $CFFF,X
+          ASL $182C,X
+          BVC L0360
+          .BYTE $12    ;%00010010
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          .BYTE $1C    ;%00011100
+          .BYTE $FF    ;%11111111
+          .BYTE $8F    ;%10001111
+          .BYTE $1B    ;%00011011
+          ASL $12,X
+          AND ($70,X)
+          AND ($10),Y
+          ORA ($18),Y
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          ORA $5015,X
+          AND ($70,X)
+          EOR ($18,X)
+          ORA $2FFF,X
+          ASL $F014,X
+          BMI L0370
+          BPL L0373
+          .BYTE $17    ;%00010111
+          ASL $19FF,X
+          CPX #$11
+          .BYTE $12    ;%00010010
+          BIT $12
+          RTI
+          ORA $14FF,Y
+          BVC L0393
+L0370     ORA ($20),Y
+          AND ($20,X)
+          .BYTE $12    ;%00010010
+          ORA $18,X
+          ORA $1216,Y
+          BMI L038E
+          ORA $1CDF,Y
+          ORA ($40),Y
+          .BYTE $12    ;%00010010
+          ORA $171A,Y
+          AND $26
+          .BYTE $34    ;%00110100 '4'
+          .BYTE $17    ;%00010111
+          ROL A
+          ORA $1317,Y
+          BMI L03A0
+          .BYTE $1B    ;%00011011
+          .BYTE $CF    ;%11001111
+          CLC
+          BVC L03A7
+          ROL A
+          ORA $1938,Y
+          CLC
+          .BYTE $27    ;%00100111 '''
+          PLP
+          .BYTE $27    ;%00100111 '''
+          CLC
+          .BYTE $17    ;%00010111
+          .BYTE $12    ;%00010010
+          BMI L03B9
+          .BYTE $CF    ;%11001111
+          .BYTE $1A    ;%00011010
+          BVC L03BA
+          ORA $1417,Y
+          .BYTE $13    ;%00010011
+          .BYTE $22    ;%00100010 '"'
+          .BYTE $13    ;%00010011
+          ASL $17,X
+          ASL $13,X
+          AND ($12,X)
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          ORA $20,X
+          .BYTE $13    ;%00010011
+          ORA $1CCF,X
+L03B9     RTI
+L03BA     .BYTE $12    ;%00010010
+          PLP
+          ORA $13,X
+          ORA ($30),Y
+          .BYTE $12    ;%00010010
+          PLP
+          .BYTE $12    ;%00010010
+          BPL L03D6
+          .BYTE $12    ;%00010010
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          CLC
+          .BYTE $12    ;%00010010
+          BPL L03E6
+          .BYTE $DF    ;%11011111
+          ORA $3012,X
+          .BYTE $14    ;%00010100
+          .BYTE $1A    ;%00011010
+          ORA $1718,Y
+          EOR $16
+          .BYTE $1B    ;%00011011
+          ORA $2618,X
+          .BYTE $17    ;%00010111
+          CLC
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          ORA $11,X
+          .BYTE $1C    ;%00011100
+          .BYTE $EF    ;%11101111
+          CLC
+          BPL L03F9
+L03E6     .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          EOR $2718,Y
+          ORA $2C1B,Y
+          .BYTE $1A    ;%00011010
+          .BYTE $27    ;%00100111 '''
+          ORA $172A,Y
+          .BYTE $12    ;%00010010
+          CLC
+          .BYTE $EF    ;%11101111
+          ASL $2312,X
+L03F9     ORA ($15),Y
+          ASL $35,X
+          BIT $35
+          ASL $17,X
+          ASL $14,X
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ORA $16,X
+          ORA $11,X
+          CLC
+          .BYTE $FF    ;%11111111
+          .BYTE $17    ;%00010111
+          BMI L0420
+          BIT $13
+          AND ($23,X)
+          ORA ($10),Y
+          AND ($22,X)
+          AND ($13,X)
+          .BYTE $14    ;%00010100
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          ORA $1DFF,X
+          ASL $11,X
+L0420     BPL L0443
+          .BYTE $22    ;%00100010 '"'
+          ORA ($22),Y
+          .BYTE $13    ;%00010011
+          BIT $25
+          .BYTE $14    ;%00010100
+          .BYTE $23    ;%00100011 '#'
+          EOR ($1A,X)
+          .BYTE $FF    ;%11111111
+          .BYTE $2F    ;%00101111 '/'
+          ORA $1516,X
+          JSR $1331
+          BIT $15
+          ASL $47,X
+          .BYTE $13    ;%00010011
+          ORA ($10),Y
+          .BYTE $12    ;%00010010
+          ORA $2FFF,Y
+          ORA $1C1A,X
+          ORA $1113,Y
+          JSR $1321
+          BIT $33
+          BIT $21
+          .BYTE $13    ;%00010011
+          .BYTE $1A    ;%00011010
+          .BYTE $EF    ;%11101111
+          ROL $1C1D
+          .BYTE $1B    ;%00011011
+          ORA $1B1E,X
+          ASL $13,X
+          EOR ($12),Y
+          EOR ($12,X)
+          AND ($12,X)
+          CLC
+          .BYTE $1A    ;%00011010
+          ORA $1EAF,X
+          ORA $2D3C,X
+          LSR $141A
+          .BYTE $22    ;%00100010 '"'
+          ORA ($20),Y
+          ADC ($13),Y
+          ORA $17,X
+          BIT $1E1D
+          .BYTE $7F    ;%01111111
+          EOR $2D2E
+          ROL $2E1D
+          ORA $3223,Y
+          AND ($22),Y
+          .BYTE $13    ;%00010011
+          ORA $16,X
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          ROL $2E3D
+          .BYTE $4F    ;%01001111 'O'
+          ROL $2E7D
+          ORA $1A2E,X
+          .BYTE $14    ;%00010100
+          .BYTE $43    ;%01000011 'C'
+          .BYTE $14    ;%00010100
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ORA $16,X
+          .BYTE $17    ;%00010111
+          ORA $14,X
+          CLC
+          ORA $2D4E,X
+          LSR $4E9D
+          .BYTE $1C    ;%00011100
+          .BYTE $1A    ;%00011010
+          CLC
+          ORA $14,X
+          .BYTE $43    ;%01000011 'C'
+          ORA $26,X
+          ORA $13,X
+          ASL $1A,X
+          ROL $008D,X
+          .BYTE $04    ;%00000100
+          .BYTE $57    ;%01010111 'W'
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $5A    ;%01011010 'Z'
+          JSR $1E8F
+          .BYTE $1B    ;%00011011
+          CLC
+          ORA $34,X
+          ORA $17,X
+          CLC
+          ORA $1D1B,Y
+          ASL $7FFF,X
+          ASL $171A,X
+          .BYTE $14    ;%00010100
+          ORA ($40),Y
+          AND ($30,X)
+          AND ($12),Y
+          ASL $1C,X
+          .BYTE $FF    ;%11111111
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $1C    ;%00011100
+          ASL $11,X
+          BVC L04F6
+          JSR $1211
+          ORA ($50),Y
+          ORA ($17),Y
+          ORA $1FFF,X
+          .BYTE $1B    ;%00011011
+          .BYTE $14    ;%00010100
+          LDY #$21
+          .BYTE $12    ;%00010010
+          ORA ($20),Y
+          AND ($30,X)
+          .BYTE $13    ;%00010011
+          .BYTE $1A    ;%00011010
+          .BYTE $EF    ;%11101111
+          ORA $A011,Y
+          ORA ($12),Y
+          ORA $17,X
+          .BYTE $13    ;%00010011
+          JSR $1051
+L04F6     ORA ($17),Y
+          ASL $1ABF,X
+          BCS L050E
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          ORA $18,X
+          ORA $30,X
+          ADC ($10,X)
+          ASL $1E,X
+          .BYTE $AF    ;%10101111
+          CLC
+          LDY #$11
+          .BYTE $12    ;%00010010
+          .BYTE $14    ;%00010100
+          AND $1A
+          ORA $4013,Y
+          EOR ($20,X)
+          CLC
+          .BYTE $AF    ;%10101111
+          ASL $90,X
+          ORA ($12),Y
+          .BYTE $14    ;%00010100
+          .BYTE $27    ;%00100111 '''
+          ASL $18,X
+          .BYTE $1A    ;%00011010
+          ASL $11,X
+          BCC L0538
+          .BYTE $AF    ;%10101111
+          ASL $70,X
+          ORA ($12),Y
+          .BYTE $23    ;%00100011 '#'
+          BIT $13
+          .BYTE $32    ;%00110010 '2'
+          .BYTE $23    ;%00100011 '#'
+          ORA ($80),Y
+          .BYTE $13    ;%00010011
+          ASL $189F,X
+          BVC L0566
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+L0538     .BYTE $13    ;%00010011
+          ORA ($40),Y
+          .BYTE $12    ;%00010010
+          .BYTE $14    ;%00010100
+          ORA $14,X
+          .BYTE $13    ;%00010011
+          ORA ($50),Y
+          ORA ($1C),Y
+          .BYTE $9F    ;%10011111
+          .BYTE $1A    ;%00011010
+          RTI
+          AND ($20),Y
+          .BYTE $12    ;%00010010
+          CLC
+          .BYTE $17    ;%00010111
+          .BYTE $13    ;%00010011
+          .BYTE $12    ;%00010010
+          AND ($12,X)
+          ASL $19,X
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          CLC
+          .BYTE $13    ;%00010011
+          BVC L056F
+          ASL $1C8F,X
+          ORA ($20),Y
+          ORA ($14),Y
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $22    ;%00100010 '"'
+          .BYTE $14    ;%00010100
+          .BYTE $1B    ;%00011011
+          ORA $181A,X
+          .BYTE $27    ;%00100111 '''
+          CLC
+          ORA $1A4B,Y
+          CLC
+          .BYTE $13    ;%00010011
+          RTI
+L056F     ORA ($18),Y
+          .BYTE $9F    ;%10011111
+          .BYTE $17    ;%00010111
+          JSR $1711
+          ORA $1637,Y
+          .BYTE $1A    ;%00011010
+          ROL $281B
+          EOR #$48
+          .BYTE $17    ;%00010111
+          ORA $14,X
+          ORA ($20),Y
+          .BYTE $17    ;%00010111
+          .BYTE $9F    ;%10011111
+          ORA $2015,X
+          ASL $48,X
+          ROL $29
+          CLC
+          .BYTE $47    ;%01000111 'G'
+          CLC
+          .BYTE $27    ;%00100111 '''
+          SEC
+          ORA $1317,Y
+          ORA ($20),Y
+          .BYTE $1A    ;%00011010
+          .BYTE $AF    ;%10101111
+          ASL $1015,X
+          .BYTE $12    ;%00010010
+          ROL $17
+          CLC
+          .BYTE $17    ;%00010111
+          .BYTE $14    ;%00010100
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $14    ;%00010100
+          .BYTE $27    ;%00100111 '''
+          ORA $14,X
+          ASL $27,X
+          PHA
+          ORA $40,X
+          ORA $1E,X
+          .BYTE $AF    ;%10101111
+          ASL $1015,X
+          .BYTE $14    ;%00010100
+          .BYTE $27    ;%00100111 '''
+          ASL $15,X
+          .BYTE $14    ;%00010100
+          .BYTE $13    ;%00010011
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          AND $14
+          .BYTE $13    ;%00010011
+          ORA $16,X
+          .BYTE $37    ;%00110111 '7'
+          CLC
+          .BYTE $17    ;%00010111
+          ORA $11,X
+          JSR $1512
+          .BYTE $1C    ;%00011100
+          .BYTE $BF    ;%10111111
+          .BYTE $1C    ;%00011100
+          .BYTE $12    ;%00010010
+          ORA ($26),Y
+          ORA $23,X
+          BIT $13
+          .BYTE $14    ;%00010100
+          ORA $26,X
+          AND $36
+          ORA $14,X
+          .BYTE $17    ;%00010111
+          .BYTE $14    ;%00010100
+          JSR $1612
+          .BYTE $1A    ;%00011010
+          .BYTE $CF    ;%11001111
+          .BYTE $1A    ;%00011010
+          .BYTE $22    ;%00100010 '"'
+          AND $14
+          AND $14
+          .BYTE $13    ;%00010011
+          ORA $16,X
+          .BYTE $27    ;%00100111 '''
+          ROL $15
+          .BYTE $14    ;%00010100
+          .BYTE $13    ;%00010011
+          .BYTE $12    ;%00010010
+          ORA $18,X
+          .BYTE $17    ;%00010111
+          ORA ($10),Y
+          ORA ($14),Y
+          .BYTE $17    ;%00010111
+          .BYTE $1B    ;%00011011
+          .BYTE $CF    ;%11001111
+          .BYTE $1B    ;%00011011
+          ASL $24,X
+          AND $26
+          AND $46
+          .BYTE $14    ;%00010100
+          .BYTE $13    ;%00010011
+          .BYTE $22    ;%00100010 '"'
+          .BYTE $13    ;%00010011
+          ASL $28,X
+          .BYTE $13    ;%00010011
+          BPL L0619
+          .BYTE $13    ;%00010011
+          ORA $17,X
+          .BYTE $1C    ;%00011100
+          .BYTE $CF    ;%11001111
+          ORA $2214,X
+          .BYTE $14    ;%00010100
+          ORA $24,X
+          .BYTE $53    ;%01010011 'S'
+          .BYTE $32    ;%00110010 '2'
+          .BYTE $13    ;%00010011
+          ORA $16,X
+          .BYTE $17    ;%00010111
+L0619     CLC
+          .BYTE $14    ;%00010100
+          AND ($13,X)
+          AND $19
+          .BYTE $CF    ;%11001111
+          .BYTE $1B    ;%00011011
+          .BYTE $23    ;%00100011 '#'
+          AND ($12,X)
+          .BYTE $93    ;%10010011
+          BIT $15
+          ASL $27,X
+          .BYTE $13    ;%00010011
+          ORA ($12),Y
+          .BYTE $14    ;%00010100
+          ORA $16,X
+          ORA $1E1B,Y
+          .BYTE $AF    ;%10101111
+          ORA $1413,Y
+          .BYTE $13    ;%00010011
+          .BYTE $32    ;%00110010 '2'
+          .BYTE $33    ;%00110011 '3'
+          .BYTE $14    ;%00010100
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $34    ;%00110100 '4'
+          AND $16,X
+          ORA $13,X
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          AND $17
+          PLP
+          .BYTE $1C    ;%00011100
+          ASL $1E1D,X
+          .BYTE $4F    ;%01001111 'O'
+          ROL $191D
+          ORA $34,X
+          .BYTE $33    ;%00110011 '3'
+          STY $35,X
+          .BYTE $14    ;%00010100
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ASL $25,X
+          .BYTE $17    ;%00010111
+          ORA $2E1D,Y
+          ORA $001E,X
+          .BYTE $0B    ;%00001011
+          .BYTE $53    ;%01010011 'S'
+          .BYTE $54    ;%01010100 'T'
+          EOR $56
+          EOR $20
+          LSR A
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $42    ;%01000010 'B'
+          .BYTE $53    ;%01010011 'S'
+          JSR $AFFF
+          .BYTE $27    ;%00100111 '''
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          .BYTE $57    ;%01010111 'W'
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $57    ;%01010111 'W'
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $57    ;%01010111 'W'
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $57    ;%01010111 'W'
+          .BYTE $FF    ;%11111111
+          .BYTE $DF    ;%11011111
+          .BYTE $37    ;%00110111 '7'
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $27    ;%00100111 '''
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $47    ;%01000111 'G'
+          .BYTE $FF    ;%11111111
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $F7    ;%11110111
+          .BYTE $A7    ;%10100111
+          .BYTE $DF    ;%11011111
+          .BYTE $F7    ;%11110111
+          .BYTE $D7    ;%11010111
+          .BYTE $BF    ;%10111111
+          .BYTE $FC    ;%11111100
+          CPY $FCCF
+          CPY $FCDF
+          LDY $F8DF,X
+          INY
+          .BYTE $DF    ;%11011111
+          SED
+          INY
+          .BYTE $DF    ;%11011111
+          SED
+          CLD
+          .BYTE $DF    ;%11011111
+          .BYTE $F4    ;%11110100
+          .BYTE $D4    ;%11010100
+          .BYTE $CF    ;%11001111
+          .BYTE $F4    ;%11110100
+          CPX $CF
+          .BYTE $F4    ;%11110100
+          .BYTE $F4    ;%11110100
+          .BYTE $AF    ;%10101111
+          .BYTE $F3    ;%11110011
+          .BYTE $F3    ;%11110011
+          .BYTE $BF    ;%10111111
+          .BYTE $F3    ;%11110011
+          .BYTE $D3    ;%11010011
+          .BYTE $DF    ;%11011111
+          .BYTE $F3    ;%11110011
+          .BYTE $B3    ;%10110011
+          .BYTE $FF    ;%11111111
+          .BYTE $1F    ;%00011111
+          .BYTE $F4    ;%11110100
+          STY $FF
+          .BYTE $3F    ;%00111111 '?'
+          STY $4F
+          STY $FF
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          BRK
+          .BYTE $1B    ;%00011011
+          PHA
+          EOR ($50,X)
+          BVC L071C
+          JSR $3033
+          .BYTE $54    ;%01010100 'T'
+          PHA
+          JSR $4942
+          .BYTE $52    ;%01010010 'R'
+          .BYTE $54    ;%01010100 'T'
+          PHA
+          .BYTE $44    ;%01000100 'D'
+          EOR ($59,X)
+          JSR $5041
+          BVC L0722
+          EOR $21
+          JSR $AFFF
+          ASL $1519,X
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ORA $FF1D,Y
+          .BYTE $FF    ;%11111111
+          .BYTE $2F    ;%00101111 '/'
+          ASL $1318,X
+          AND ($13),Y
+          .BYTE $17    ;%00010111
+          ORA $1EEF,X
+          ORA $1D1C,X
+          .BYTE $DF    ;%11011111
+          .BYTE $1C    ;%00011100
+          ASL $22,X
+          BIT $13
+          ORA $1A,X
+          .BYTE $DF    ;%11011111
+          .BYTE $1C    ;%00011100
+          .BYTE $17    ;%00010111
+          .BYTE $12    ;%00010010
+          ORA ($15),Y
+          .BYTE $1A    ;%00011010
+          .BYTE $CF    ;%11001111
+          ORA $2518,X
+          PLP
+          .BYTE $27    ;%00100111 '''
+          ORA $BF1E,Y
+          .BYTE $1C    ;%00011100
+          ASL $11,X
+          BPL L071F
+          .BYTE $12    ;%00010010
+          ORA $1A,X
+          .BYTE $CF    ;%11001111
+          .BYTE $1C    ;%00011100
+          ORA $1827,Y
+          .BYTE $27    ;%00100111 '''
+          ORA $BF1D,Y
+          .BYTE $1A    ;%00011010
+          ORA $14,X
+          ORA $17,X
+L071F     ROL $18
+          .BYTE $1C    ;%00011100
+L0722     .BYTE $CF    ;%11001111
+          .BYTE $1B    ;%00011011
+          ASL $24,X
+          AND $18
+          .BYTE $1C    ;%00011100
+          .BYTE $BF    ;%10111111
+          .BYTE $1B    ;%00011011
+          .BYTE $17    ;%00010111
+          ORA $16,X
+          CLC
+          .BYTE $17    ;%00010111
+          CLC
+          .BYTE $1A    ;%00011010
+          ASL $1CCF,X
+          .BYTE $17    ;%00010111
+          .BYTE $14    ;%00010100
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ORA $18,X
+          .BYTE $1B    ;%00011011
+          .BYTE $BF    ;%10111111
+          ORA $4518,X
+          .BYTE $17    ;%00010111
+          .BYTE $1B    ;%00011011
+          ASL $1ECF,X
+          .BYTE $1C    ;%00011100
+          ORA $1927,Y
+          .BYTE $1B    ;%00011011
+          ASL $1BCF,X
+          ORA $22,X
+          .BYTE $13    ;%00010011
+          .BYTE $17    ;%00010111
+          .BYTE $1C    ;%00011100
+          .BYTE $FF    ;%11111111
+          .BYTE $1F    ;%00011111
+          AND $EF1E
+          ASL $1319,X
+          ORA ($14),Y
+          ORA $AF1E,Y
+          ROL $3EAF
+          .BYTE $5F    ;%01011111 '_'
+          LSR $171B
+          .BYTE $14    ;%00010100
+          ASL $1A,X
+          ORA $1EAF,X
+          ORA $8F1E,X
+          ASL $1E3D,X
+          .BYTE $3F    ;%00111111 '?'
+          ASL $1C4D,X
+          .BYTE $2B    ;%00101011 '+'
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          .BYTE $1C    ;%00011100
+          AND $5F2E
+          ASL $1E2D,X
+          .BYTE $7F    ;%01111111
+          ASL $2C1D,X
+          ORA $1F2E,X
+          ASL $6E3D,X
+          EOR $6F1E,X
+          ORA $1D1C,X
+          ASL $2E3F,X
+          .BYTE $1F    ;%00011111
+          ASL $2C1D,X
+          ORA $5D3E,X
+          .BYTE $9E    ;%10011110
+          ORA $1B6C,X
+          .BYTE $1A    ;%00011010
+          AND $192A,Y
+          .BYTE $1A    ;%00011010
+          .BYTE $1C    ;%00011100
+          ROL $2B1D
+          .BYTE $1C    ;%00011100
+          ASL $1E2F,X
+          ADC $2D3E,X
+          ASL $1A1D,X
+          .BYTE $17    ;%00010111
+          AND $16
+          EOR $14,X
+          AND $16
+          CLC
+          .BYTE $1B    ;%00011011
+          ASL $1D1F,X
+          .BYTE $2B    ;%00101011 '+'
+          .BYTE $1C    ;%00011100
+          ORA $2D3E,X
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          BIT $1E1D
+          .BYTE $1F    ;%00011111
+          ASL $1C2D,X
+          .BYTE $1B    ;%00011011
+          CLC
+          ASL $15,X
+          STY $25
+          ASL $18,X
+          .BYTE $1B    ;%00011011
+          ASL $1E1F,X
+          .BYTE $3C    ;%00111100 '<'
+          ORA $1C1E,X
+          AND $1D3C,X
+          ASL $1E3F,X
+          ORA $191B,X
+          CLC
+          .BYTE $17    ;%00010111
+          ASL $15,X
+          BIT $25
+          .BYTE $44    ;%01000100 'D'
+          .BYTE $23    ;%00100011 '#'
+          ASL $1A,X
+          ORA $1E3F,X
+          AND $1D1C
+          BIT $4E2D
+          .BYTE $2F    ;%00101111 '/'
+          ORA $191B,X
+          CLC
+          .BYTE $27    ;%00100111 '''
+          ORA $14,X
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ROL $14
+          .BYTE $33    ;%00110011 '3'
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          .BYTE $1A    ;%00011010
+          .BYTE $1C    ;%00011100
+          ORA $4D3E,X
+          .BYTE $1B    ;%00011011
+          ORA $1B1A,Y
+          ORA $1D3E,X
+          .BYTE $1C    ;%00011100
+          ORA $1617,Y
+          .BYTE $17    ;%00010111
+          SEC
+          .BYTE $17    ;%00010111
+          ASL $17,X
+          CLC
+          AND #$17
+          ROL $15
+          ASL $27,X
+          SEC
+          ORA $1D1A,Y
+          .BYTE $4F    ;%01001111 'O'
+          ORA $391B,X
+          .BYTE $1A    ;%00011010
+          EOR #$38
+          ORA $1C1A,Y
+          ASL $2E1F,X
+          .BYTE $1F    ;%00011111
+          ASL $1B1D,X
+          .BYTE $3A    ;%00111010 ':'
+          ORA $2718,Y
+          CLC
+          ORA $1C1A,Y
+          ASL $1D5F,X
+          .BYTE $1A    ;%00011010
+          CLC
+          .BYTE $27    ;%00100111 '''
+          CLC
+          AND #$3A
+          ORA $1A18,Y
+          ORA $1C6F,X
+          ORA $6918,Y
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          ORA $1D5F,X
+          ORA $1516,Y
+          LSR $15,X
+          .BYTE $14    ;%00010100
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          ASL $1C,X
+          .BYTE $6F    ;%01101111 'o'
+          ASL $1519,X
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $44    ;%01000100 'D'
+          AND $16,X
+          .BYTE $1A    ;%00011010
+          ASL $1E4F,X
+          CLC
+          .BYTE $13    ;%00010011
+          BPL L0895
+          .BYTE $12    ;%00010010
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $12    ;%00010010
+          ORA ($10),Y
+          ORA ($15),Y
+          .BYTE $1B    ;%00011011
+          .BYTE $7F    ;%01111111
+          .BYTE $1A    ;%00011010
+          ORA $42,X
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $14    ;%00010100
+          ORA $16,X
+          CLC
+          .BYTE $1B    ;%00011011
+          ASL $002F,X
+          ORA $4F57,X
+          .BYTE $5A    ;%01011010 'Z'
+          JSR $4E41
+          .BYTE $44    ;%01000100 'D'
+          JSR $4F4A
+          .BYTE $42    ;%01000010 'B'
+L0895     .BYTE $53    ;%01010011 'S'
+          JSR $4F48
+          JMP $4944
+          LSR $2047
+          EOR ($50,X)
+          BVC L08EF
+          EOR $20
+          EOR #$20
+          .BYTE $FF    ;%11111111
+          .BYTE $3F    ;%00111111 '?'
+          ROL $FFFF,X
+          .BYTE $5F    ;%01011111 '_'
+          ASL $1E7D,X
+          .BYTE $FF    ;%11111111
+          .BYTE $EF    ;%11101111
+          ASL $6E3D,X
+          EOR $FF1E
+          .BYTE $8F    ;%10001111
+          ASL $EE2D,X
+          AND $FF2E,X
+          .BYTE $2F    ;%00101111 '/'
+          ASL $FE1D,X
+          LSR $1E5D
+          .BYTE $CF    ;%11001111
+          ASL $FE1D,X
+          ROR $1B3D,X
+          ORA $1C9F,Y
+          AND $1D6E
+          ASL $2E3F,X
+          .BYTE $2F    ;%00101111 '/'
+          ROR $1E1D,X
+          ORA $171A,X
+          ORA $1E,X
+          .BYTE $7F    ;%01111111
+          ASL $2A1C,X
+          .BYTE $1C    ;%00011100
+          ORA $193E,X
+          ASL $18,X
+          ORA $1E1C,Y
+          .BYTE $4F    ;%01001111 'O'
+          ASL $6E1F,X
+          .BYTE $1C    ;%00011100
+          ORA $1416,Y
+          ASL $7F,X
+          AND $1C3E
+          .BYTE $3B    ;%00111011 ';'
+          ORA $1A1B,X
+          CLC
+          .BYTE $37    ;%00110111 '7'
+          .BYTE $1A    ;%00011010
+          .BYTE $1F    ;%00011111
+          LSR $4E1F
+          .BYTE $1B    ;%00011011
+          CLC
+          AND $16
+          .BYTE $17    ;%00010111
+          .BYTE $5F    ;%01011111 '_'
+          ASL $193D,X
+          .BYTE $14    ;%00010100
+          CLC
+          .BYTE $1C    ;%00011100
+          ROL $3B1D
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          ROL A
+          ORA $1F8E,X
+          .BYTE $1B    ;%00011011
+          ASL $14,X
+          ORA $27,X
+          CLC
+          .BYTE $4F    ;%01001111 'O'
+          ASL $1E1D,X
+          ORA $3015,X
+          ORA ($14),Y
+          ORA $1E1C,Y
+          .BYTE $1F    ;%00011111
+          ORA $2B1C,X
+          .BYTE $1C    ;%00011100
+          STX $1E1F
+          CLC
+          .BYTE $14    ;%00010100
+          ASL $47,X
+          .BYTE $3F    ;%00111111 '?'
+          AND $1B1E
+          .BYTE $14    ;%00010100
+          BPL L097F
+          JSR $1411
+          CLC
+          .BYTE $1C    ;%00011100
+          ASL $1E1F,X
+          .BYTE $1C    ;%00011100
+          .BYTE $3B    ;%00111011 ';'
+          ORA $2F2E,X
+          ASL $2619,X
+          .BYTE $37    ;%00110111 '7'
+          ORA $1B,X
+          .BYTE $1F    ;%00011111
+          ASL $1E3D,X
+          .BYTE $1A    ;%00011010
+          ORA ($30),Y
+          EOR ($20),Y
+          ORA ($14),Y
+          CLC
+          .BYTE $1C    ;%00011100
+          ASL $1E1F,X
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          .BYTE $1C    ;%00011100
+          ORA $161A,X
+          .BYTE $37    ;%00110111 '7'
+          ASL $15,X
+          .BYTE $1C    ;%00011100
+          .BYTE $2F    ;%00101111 '/'
+          .BYTE $1C    ;%00011100
+          ASL $19,X
+          ORA $1D2E,X
+          .BYTE $13    ;%00010011
+          AND ($10),Y
+          ADC ($10),Y
+          ORA ($14),Y
+          CLC
+          .BYTE $1C    ;%00011100
+          ASL $1E1F,X
+          ORA $191C,X
+          .BYTE $47    ;%01000111 'G'
+          ROL $1D
+          .BYTE $4F    ;%01001111 'O'
+          ORA $1216,X
+          .BYTE $17    ;%00010111
+          .BYTE $1B    ;%00011011
+          ASL $141A,X
+          EOR ($10),Y
+          ORA ($12),Y
+          ADC ($1B,X)
+          AND $1F1E
+          .BYTE $1C    ;%00011100
+          .BYTE $47    ;%01000111 'G'
+          ORA $17,X
+          .BYTE $8F    ;%10001111
+          .BYTE $1A    ;%00011010
+          .BYTE $14    ;%00010100
+          .BYTE $12    ;%00010010
+          .BYTE $14    ;%00010100
+          .BYTE $1A    ;%00011010
+          ORA $171C,X
+          .BYTE $13    ;%00010011
+          AND ($12,X)
+          ORA ($20),Y
+          .BYTE $22    ;%00100010 '"'
+          AND ($1C,X)
+          .BYTE $1F    ;%00011111
+          ROL $471B,X
+          ORA $19,X
+          .BYTE $BF    ;%10111111
+          ORA $2317,X
+          .BYTE $17    ;%00010111
+          .BYTE $1C    ;%00011100
+          ORA $161B,X
+          .BYTE $12    ;%00010010
+          ORA ($12),Y
+          ORA ($20),Y
+          .BYTE $14    ;%00010100
+          ASL $2E1F,X
+          .BYTE $1F    ;%00011111
+          .BYTE $1B    ;%00011011
+          .BYTE $47    ;%01000111 'G'
+          ORA $1B,X
+          .BYTE $FF    ;%11111111
+          .BYTE $1B    ;%00011011
+          ORA $12,X
+          .BYTE $14    ;%00010100
+          ORA $1A2D,Y
+          ROL $171A
+          ASL $2E1F,X
+          .BYTE $1F    ;%00011111
+          .BYTE $1C    ;%00011100
+          .BYTE $37    ;%00110111 '7'
+          ASL $15,X
+          .BYTE $1C    ;%00011100
+          .BYTE $FF    ;%11111111
+          .BYTE $3F    ;%00111111 '?'
+          ASL $2318,X
+          ASL $1B,X
+          ORA $2F1E,X
+          ROL $1C1F,X
+          .BYTE $37    ;%00110111 '7'
+          ROL $1E
+          .BYTE $FF    ;%11111111
+          .BYTE $7F    ;%01111111
+          .BYTE $1C    ;%00011100
+          ASL $12,X
+          .BYTE $13    ;%00010011
+          .BYTE $17    ;%00010111
+          .BYTE $1C    ;%00011100
+          ASL $1E1F,X
+          .BYTE $1F    ;%00011111
+          ORA $1537,X
+          .BYTE $17    ;%00010111
+          .BYTE $FF    ;%11111111
+          .BYTE $BF    ;%10111111
+          ASL $1419,X
+          .BYTE $12    ;%00010010
+          .BYTE $14    ;%00010100
+          ORA $182C,Y
+          .BYTE $27    ;%00100111 '''
+          ORA $19,X
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          ORA $1217,X
+          ORA ($12),Y
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $14    ;%00010100
+          .BYTE $1B    ;%00011011
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $1B    ;%00011011
+          ORA $1C28,Y
+          .BYTE $EF    ;%11101111
+          BRK
+          ORA #$41
+          BVC L0A72
+          JMP $2045
+          EOR #$49
+          JSR $FFFF
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $CF    ;%11001111
+          ASL $7FFF,X
+          ASL $7C6D,X
+          .BYTE $3B    ;%00111011 ';'
+          .BYTE $1A    ;%00011010
+          ORA $6FFF,X
+          ORA $1415,X
+          AND $A4,X
+          ROL A
+          ORA $6FFF,X
+          ORA $1815,X
+          AND $792A,Y
+          .BYTE $14    ;%00010100
+          .BYTE $1A    ;%00011010
+          ORA $FF1D,Y
+          .BYTE $6F    ;%01101111 'o'
+          .BYTE $1C    ;%00011100
+          .BYTE $14    ;%00010100
+          CLC
+          ORA $1B1A,Y
+          ORA $1B1A,Y
+          AND $143A,Y
+          AND #$1D
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          ASL $141B,X
+          AND #$1A
+          ORA $1816,Y
+          ORA $1617,Y
+          .BYTE $17    ;%00010111
+          PLP
+          .BYTE $1A    ;%00011010
+          .BYTE $14    ;%00010100
+          PLP
+          ORA $5FFF,X
+          ASL $141A,X
+          PLP
+          AND $1968,Y
+          .BYTE $1A    ;%00011010
+          .BYTE $14    ;%00010100
+          PLP
+          ORA $5FFF,X
+          ASL $141A,X
+          PLP
+          AND $197A,Y
+          .BYTE $14    ;%00010100
+          CLC
+          .BYTE $17    ;%00010111
+          ORA $5FFF,X
+          ORA $1319,X
+          ROL $55
+          LSR $25
+          .BYTE $13    ;%00010011
+          CLC
+          .BYTE $17    ;%00010111
+          .BYTE $1C    ;%00011100
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          ORA $1A19,X
+          ORA $4728,Y
+          ASL $57,X
+          CLC
+          .BYTE $1A    ;%00011010
+          ASL $1C,X
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          .BYTE $1C    ;%00011100
+          ORA $793A,Y
+          CLI
+          .BYTE $17    ;%00010111
+          ASL $1C,X
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          .BYTE $1B    ;%00011011
+          PLA
+          .BYTE $57    ;%01010111 'W'
+          ROL $25,X
+          ROL $1C
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          .BYTE $1B    ;%00011011
+          .BYTE $D7    ;%11010111
+          ROL $17,X
+          ASL $1C,X
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          .BYTE $1A    ;%00011010
+          .BYTE $17    ;%00010111
+          ASL $47,X
+          STX $17
+          ROL $15
+          .BYTE $1B    ;%00011011
+          .BYTE $FF    ;%11111111
+          .BYTE $5F    ;%01011111 '_'
+          ORA $7465,Y
+          EOR $1A,X
+          ORA $8F1E,X
+          ORA $2B7C,X
+          .BYTE $17    ;%00010111
+          .BYTE $44    ;%01000100 'D'
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          .BYTE $53    ;%01010011 'S'
+          ORA $16,X
+          .BYTE $13    ;%00010011
+          .BYTE $22    ;%00100010 '"'
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ORA $1E1F,X
+          ORA $5F1E,X
+          ORA $3627,X
+          ADC $34
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $14    ;%00010100
+          .BYTE $43    ;%01000011 'C'
+          .BYTE $14    ;%00010100
+          .BYTE $1A    ;%00011010
+          .BYTE $1C    ;%00011100
+          .BYTE $14    ;%00010100
+          BPL L0B06
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          ORA $1D3F,X
+          ASL $1B4F,X
+          ASL $17,X
+          ORA $17,X
+          ORA $16,X
+          .BYTE $17    ;%00010111
+          ROL $15,X
+L0B06     .BYTE $54    ;%01010100 'T'
+          .BYTE $53    ;%01010011 'S'
+          .BYTE $14    ;%00010100
+          .BYTE $1A    ;%00011010
+          .BYTE $1C    ;%00011100
+          ASL $11,X
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          .BYTE $1F    ;%00011111
+          ASL $1E3F,X
+          .BYTE $4F    ;%01001111 'O'
+          ASL $1A1D,X
+          ORA $991A,Y
+          CLI
+          .BYTE $27    ;%00100111 '''
+          CLC
+          .BYTE $3B    ;%00111011 ';'
+          CLC
+          .BYTE $17    ;%00010111
+          .BYTE $1B    ;%00011011
+          EOR $191B,X
+          .BYTE $1B    ;%00011011
+          .BYTE $1F    ;%00011111
+          ASL $4819,X
+          ORA $7788,Y
+          LSR $25,X
+          .BYTE $1A    ;%00011010
+          ORA $191A,X
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          .BYTE $17    ;%00010111
+          .BYTE $14    ;%00010100
+          .BYTE $1A    ;%00011010
+          .BYTE $2F    ;%00101111 '/'
+          .BYTE $1C    ;%00011100
+          LSR A
+          LDA $19B8,Y
+          .BYTE $1C    ;%00011100
+          ORA $2617,X
+          ORA $14,X
+          ORA $17,X
+          ORA $FFFF,X
+          ROL $1C1D,X
+          .BYTE $2B    ;%00101011 '+'
+          ORA $003F,X
+          ASL A
+          EOR $4341
+          EOR #$4E
+          .BYTE $54    ;%01010100 'T'
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $53    ;%01010011 'S'
+          PHA
+          JSR $1EEF
+          AND $FFFF
+          .BYTE $4F    ;%01001111 'O'
+          ORA $1819,X
+          AND #$17
+          .BYTE $1C    ;%00011100
+          ASL $FF1D,X
+          .BYTE $FF    ;%11111111
+          ORA $1915,Y
+          .BYTE $1A    ;%00011010
+          AND #$17
+          CLC
+          ASL $1C1B,X
+          ASL $BFFF,X
+          .BYTE $1C    ;%00011100
+          ROL $2B
+          .BYTE $1A    ;%00011010
+          ORA $1628,Y
+          ASL $1416,X
+          ORA $FF1C,Y
+          .BYTE $9F    ;%10011111
+          ORA $1914,Y
+          BIT $291B
+          CLC
+          .BYTE $17    ;%00010111
+          ORA $1A,X
+          .BYTE $1B    ;%00011011
+          BPL L0BA6
+          ASL $1A,X
+          .BYTE $FF    ;%11111111
+          .BYTE $6F    ;%01101111 'o'
+          ASL $1716,X
+          .BYTE $3C    ;%00111100 '<'
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          ORA $1718,Y
+          ASL $15,X
+          ASL $1E,X
+          .BYTE $14    ;%00010100
+L0BA6     ORA ($14),Y
+          CLC
+          .BYTE $1B    ;%00011011
+          .BYTE $FF    ;%11111111
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $1C    ;%00011100
+          ORA $18,X
+          BIT $193B
+          CLC
+          ASL $35,X
+          .BYTE $13    ;%00010011
+          ORA $1019,X
+          .BYTE $12    ;%00010010
+          .BYTE $17    ;%00010111
+          .BYTE $1A    ;%00011010
+          ASL $2FFF,X
+          .BYTE $1B    ;%00011011
+          .BYTE $14    ;%00010100
+          ORA $2B1C,Y
+          ROL A
+          AND #$17
+          ORA $34,X
+          .BYTE $12    ;%00010010
+          .BYTE $1A    ;%00011010
+          .BYTE $1C    ;%00011100
+          AND ($14,X)
+          CLC
+          .BYTE $1C    ;%00011100
+          .BYTE $FF    ;%11111111
+          .BYTE $1F    ;%00011111
+          .BYTE $1A    ;%00011010
+          .BYTE $14    ;%00010100
+          ORA $2A1B,Y
+          AND #$38
+          ASL $24,X
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          .BYTE $12    ;%00010010
+          ORA $1E,X
+          .BYTE $13    ;%00010011
+          BPL L0BF5
+          ASL $1A,X
+          .BYTE $FF    ;%11111111
+          .BYTE $1B    ;%00011011
+          .BYTE $12    ;%00010010
+          .BYTE $17    ;%00010111
+          AND $3728,Y
+          ASL $15,X
+          .BYTE $63    ;%01100011 'c'
+          ASL $1017,X
+          ORA ($15),Y
+          CLC
+L0BF5     ASL $13EF,X
+          .BYTE $12    ;%00010010
+          ASL $47,X
+          ROL $45
+          .BYTE $13    ;%00010011
+          .BYTE $22    ;%00100010 '"'
+          .BYTE $23    ;%00100011 '#'
+          ORA ($2A),Y
+          ORA ($10),Y
+          .BYTE $13    ;%00010011
+          .BYTE $17    ;%00010111
+          .BYTE $1C    ;%00011100
+          .BYTE $DF    ;%11011111
+          .BYTE $1A    ;%00011010
+          BPL L0C1C
+          .BYTE $14    ;%00010100
+          EOR $64
+          .BYTE $13    ;%00010011
+          .BYTE $42    ;%01000010 'B'
+          ORA ($16),Y
+          ORA $1012,X
+          .BYTE $12    ;%00010010
+          ASL $19,X
+          .BYTE $DF    ;%11011111
+          .BYTE $17    ;%00010111
+          BPL L0C4D
+L0C1C     .BYTE $12    ;%00010010
+          .BYTE $93    ;%10010011
+          .BYTE $42    ;%01000010 'B'
+          ORA ($14),Y
+          ASL $1014,X
+          ORA ($15),Y
+          .BYTE $17    ;%00010111
+          ASL $1DCF,X
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          ORA $1617,Y
+          AND $12
+          ORA ($12),Y
+          .BYTE $43    ;%01000011 'C'
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          .BYTE $22    ;%00100010 '"'
+          ORA ($12),Y
+          ORA $2016,X
+          .BYTE $13    ;%00010011
+          ASL $1C,X
+          .BYTE $CF    ;%11001111
+          AND $1D5E
+          .BYTE $1C    ;%00011100
+          ORA $1617,Y
+          ORA $14,X
+          .BYTE $13    ;%00010011
+          .BYTE $42    ;%01000010 'B'
+          AND ($1A,X)
+L0C4D     .BYTE $1B    ;%00011011
+          .BYTE $13    ;%00010011
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          ORA $1A,X
+          .BYTE $CF    ;%11001111
+          ASL $1D1C,X
+          ROR $1C1D,X
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          AND #$18
+          ASL $14,X
+          .BYTE $12    ;%00010010
+          BPL L0C7A
+          ASL $1B1C,X
+          ROL A
+          .BYTE $1C    ;%00011100
+          .BYTE $DF    ;%11011111
+          ORA $1D1C,X
+          ROL $5C2D
+          AND $1D1C
+          .BYTE $1C    ;%00011100
+          .BYTE $2B    ;%00101011 '+'
+          CLC
+          ORA $191C,Y
+          .BYTE $1A    ;%00011010
+          ORA $1C1A,Y
+          .BYTE $EF    ;%11101111
+          ORA $7D4C,X
+          .BYTE $3C    ;%00111100 '<'
+          AND $2D1E
+          ORA $1510,Y
+          CLC
+          .BYTE $17    ;%00010111
+          CLC
+          .BYTE $1B    ;%00011011
+          .BYTE $EF    ;%11101111
+          ASL $1B2D,X
+          .BYTE $1C    ;%00011100
+          ORA $2D3E,X
+          BIT $2E1D
+          AND $191C
+          BPL L0CB0
+          ORA $1918,Y
+          .BYTE $1A    ;%00011010
+          .BYTE $FF    ;%11111111
+          .BYTE $2F    ;%00101111 '/'
+          ASL $2C1D,X
+          ORA $4D2E,X
+          ASL $1E2D,X
+          .BYTE $1B    ;%00011011
+          CLC
+          ASL $17,X
+          CLC
+          .BYTE $2B    ;%00101011 '+'
+L0CB0     EOR $1E2C
+          .BYTE $AF    ;%10101111
+          ROL $1C1D,X
+          .BYTE $5B    ;%01011011 '['
+          .BYTE $1A    ;%00011010
+          .BYTE $2B    ;%00101011 '+'
+          CLC
+          .BYTE $27    ;%00100111 '''
+          AND #$1B
+          .BYTE $1A    ;%00011010
+          AND #$14
+          .BYTE $53    ;%01010011 'S'
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          ASL $18,X
+          AND #$1D
+          .BYTE $3F    ;%00111111 '?'
+          ROL $1C1D
+          .BYTE $2B    ;%00101011 '+'
+          LSR A
+          AND #$28
+          .BYTE $17    ;%00010111
+          LSR $15,X
+          CLC
+          .BYTE $1C    ;%00011100
+          ORA $2243,Y
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          PLP
+          AND #$1C
+          .BYTE $FF    ;%11111111
+          .BYTE $6F    ;%01101111 'o'
+          ASL $2B1C,X
+          .BYTE $1C    ;%00011100
+          ROL $3C1D
+          .BYTE $2B    ;%00101011 '+'
+          ORA $4F1E,X
+          BRK
+          ORA $49
+          EOR $4341
+          JSR $13A0
+          .BYTE $64    ;%01100100 'd'
+          CMP $12,X
+          BEQ L0D28
+          ORA $1C1E,Y
+          EOR $5D6C,X
+          .BYTE $1C    ;%00011100
+          ORA $161F,X
+          BEQ L0D24
+          ORA $191B,X
+          .BYTE $3C    ;%00111100 '<'
+          AND $1A1B
+          .BYTE $1B    ;%00011011
+          .BYTE $3A    ;%00111010 ':'
+          .BYTE $1C    ;%00011100
+          ORA $1D1C,X
+          .BYTE $1C    ;%00011100
+          .BYTE $1A    ;%00011010
+          CLC
+          .BYTE $1F    ;%00011111
+          .BYTE $1A    ;%00011010
+          BEQ L0D38
+          .BYTE $3C    ;%00111100 '<'
+          .BYTE $3B    ;%00111011 ';'
+          ROL $1ABF,X
+          .BYTE $1F    ;%00011111
+          .BYTE $1A    ;%00011010
+          BEQ L0D41
+          .BYTE $3C    ;%00111100 '<'
+          .BYTE $17    ;%00010111
+          .BYTE $14    ;%00010100
+L0D24     ORA $1417,Y
+          .BYTE $1A    ;%00011010
+L0D28     ASL $4F6D,X
+          .BYTE $1A    ;%00011010
+          .BYTE $1F    ;%00011111
+          .BYTE $1A    ;%00011010
+          BEQ L0D50
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          ORA $1D,X
+          .BYTE $27    ;%00100111 '''
+          ORA $3C1E,X
+          .BYTE $7F    ;%01111111
+          .BYTE $1A    ;%00011010
+          .BYTE $1F    ;%00011111
+          .BYTE $1A    ;%00011010
+          BEQ L0D60
+          .BYTE $1C    ;%00011100
+L0D41     .BYTE $1B    ;%00011011
+          .BYTE $1C    ;%00011100
+          CLC
+          .BYTE $13    ;%00010011
+          .BYTE $1B    ;%00011011
+          ASL $14,X
+          .BYTE $1B    ;%00011011
+          ASL $3D1C,X
+          .BYTE $1C    ;%00011100
+          .BYTE $5F    ;%01011111 '_'
+          .BYTE $1A    ;%00011010
+          .BYTE $1F    ;%00011111
+L0D50     .BYTE $1A    ;%00011010
+          BEQ L0D73
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          .BYTE $1C    ;%00011100
+          ORA $2918,Y
+          CLC
+          .BYTE $1A    ;%00011010
+          EOR $6F1E
+          .BYTE $1A    ;%00011010
+          .BYTE $1F    ;%00011111
+L0D60     .BYTE $1A    ;%00011010
+          BEQ L0D83
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          ORA $8C2B,X
+          ORA $1E3F,X
+          ORA $1A1E,X
+          .BYTE $1F    ;%00011111
+          .BYTE $1A    ;%00011010
+          BEQ L0D92
+          .BYTE $1C    ;%00011100
+L0D73     .BYTE $4B    ;%01001011 'K'
+          JMP ($1C6D)
+          .BYTE $1B    ;%00011011
+          .BYTE $1C    ;%00011100
+          .BYTE $1A    ;%00011010
+          .BYTE $1F    ;%00011111
+          .BYTE $1A    ;%00011010
+          BEQ L0D9E
+          .BYTE $1B    ;%00011011
+          ASL $CE6D,X
+          .BYTE $2F    ;%00101111 '/'
+L0D83     .BYTE $1A    ;%00011010
+          BEQ L0DA6
+          .BYTE $1B    ;%00011011
+          LSR $1FFF,X
+          .BYTE $1A    ;%00011010
+          BEQ L0DAD
+          .BYTE $1B    ;%00011011
+          ROR $1C2D
+          AND $1D2C
+          ASL $1A6F,X
+          BEQ L0DB9
+          .BYTE $1B    ;%00011011
+          LSR $2C1D
+          .BYTE $6B    ;%01101011 'k'
+L0D9E     .BYTE $3C    ;%00111100 '<'
+          .BYTE $5F    ;%01011111 '_'
+          .BYTE $1A    ;%00011010
+          BEQ L0DC3
+          .BYTE $1B    ;%00011011
+          ROL $5B1D,X
+          AND $1C4B,X
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $1A    ;%00011010
+          BEQ L0DCE
+          .BYTE $1B    ;%00011011
+          ASL $1C2D,X
+          .BYTE $2B    ;%00101011 '+'
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          .BYTE $4F    ;%01001111 'O'
+          ASL $3B1A,X
+L0DB9     ASL $1A3F,X
+          BEQ L0DDE
+          .BYTE $1A    ;%00011010
+          AND $4A1B,X
+          ASL $1D3F,X
+          LSR A
+          ASL $1A3F,X
+          BEQ L0DEB
+          .BYTE $1A    ;%00011010
+          ORA $1D1C,X
+          .BYTE $1C    ;%00011100
+          .BYTE $1A    ;%00011010
+          ORA $191A,Y
+          .BYTE $1A    ;%00011010
+          .BYTE $2B    ;%00101011 '+'
+          .BYTE $1A    ;%00011010
+          ORA $192A,Y
+          .BYTE $1B    ;%00011011
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $1A    ;%00011010
+          BEQ L0DFF
+          .BYTE $1A    ;%00011010
+          .BYTE $3C    ;%00111100 '<'
+          ORA $1A1C,X
+          .BYTE $89    ;%10001001
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          ASL $1A4F,X
+          BEQ L0E0C
+          ORA $2D4C,Y
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          .BYTE $2B    ;%00101011 '+'
+          .BYTE $1A    ;%00011010
+          .BYTE $1B    ;%00011011
+          .BYTE $1C    ;%00011100
+          ORA $3F3E,X
+          .BYTE $1A    ;%00011010
+          BEQ L0E1C
+          .BYTE $1A    ;%00011010
+          .BYTE $5C    ;%01011100 '\'
+          ADC $3F7E
+          ORA $20F0,Y
+          ORA $3B,X
+          .BYTE $5C    ;%01011100 '\'
+          STA $1D4E
+          .BYTE $13    ;%00010011
+          BEQ L0E3D
+          ORA ($F2),Y
+          .BYTE $42    ;%01000010 'B'
+          ORA ($90),Y
+          BRK
+          ORA $49
+          BVC L0E66
+          .BYTE $44    ;%01000100 'D'
+          JSR $1DEF
+          JMP $2C1B
+          .BYTE $4B    ;%01001011 'K'
+          .BYTE $5A    ;%01011010 'Z'
+          AND #$1A
+          AND $1B28,Y
+          .BYTE $DF    ;%11011111
+          ORA $1615,X
+          .BYTE $47    ;%01000111 'G'
+          CLC
+          ORA $491A,Y
+          ROL A
+          EOR #$48
+          ORA $1917,Y
+          .BYTE $DF    ;%11011111
+          .BYTE $1C    ;%00011100
+          .BYTE $14    ;%00010100
+          .BYTE $13    ;%00010011
+          BIT $25
+          ASL $17,X
+          CLC
+L0E3D     .BYTE $27    ;%00100111 '''
+          SEI
+          .BYTE $67    ;%01100111 'g'
+          ASL $19,X
+          .BYTE $DF    ;%11011111
+          .BYTE $1A    ;%00011010
+          .BYTE $13    ;%00010011
+          .BYTE $22    ;%00100010 '"'
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ORA $46,X
+          .BYTE $17    ;%00010111
+          CLC
+          .BYTE $B7    ;%10110111
+          ROL $1A
+          .BYTE $DF    ;%11011111
+          ORA $2213,Y
+          .BYTE $13    ;%00010011
+          AND $26
+          .BYTE $B7    ;%10110111
+          LSR $17
+          ASL $1B,X
+          .BYTE $DF    ;%11011111
+          .BYTE $17    ;%00010111
+          .BYTE $13    ;%00010011
+          .BYTE $32    ;%00110010 '2'
+          .BYTE $14    ;%00010100
+          ROL $27
+          DEC $37
+          ASL $1C,X
+L0E66     .BYTE $DF    ;%11011111
+          ASL $42,X
+          .BYTE $14    ;%00010100
+          ORA $17,X
+          CLC
+          AND $26
+          AND $36
+          ORA $76,X
+          ORA $15DF,X
+          .BYTE $42    ;%01000010 'B'
+          .BYTE $13    ;%00010011
+          ASL $19,X
+          EOR $14,X
+          ROL $75,X
+          .BYTE $14    ;%00010100
+          ORA $1E,X
+          .BYTE $CF    ;%11001111
+          ASL $4114,X
+          .BYTE $13    ;%00010011
+          .BYTE $27    ;%00100111 '''
+          .BYTE $54    ;%01010100 'T'
+          ASL $17,X
+          ASL $25,X
+          .BYTE $14    ;%00010100
+          ORA $24,X
+          .BYTE $33    ;%00110011 '3'
+          ORA $1E,X
+          .BYTE $CF    ;%11001111
+          ORA $4113,X
+          .BYTE $14    ;%00010100
+          .BYTE $17    ;%00010111
+          .BYTE $14    ;%00010100
+          .BYTE $43    ;%01000011 'C'
+          ASL $17,X
+          AND $44
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $22    ;%00100010 '"'
+          .BYTE $13    ;%00010011
+          ORA $DF,X
+          .BYTE $1C    ;%00011100
+          .BYTE $13    ;%00010011
+          EOR ($14,X)
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $22    ;%00100010 '"'
+          .BYTE $13    ;%00010011
+          ROL $15
+          .BYTE $14    ;%00010100
+          .BYTE $43    ;%01000011 'C'
+          .BYTE $52    ;%01010010 'R'
+          .BYTE $13    ;%00010011
+          ASL $DF,X
+          .BYTE $1A    ;%00011010
+          .BYTE $12    ;%00010010
+          BMI L0F18
+          .BYTE $44    ;%01000100 'D'
+          .BYTE $23    ;%00100011 '#'
+          .BYTE $22    ;%00100010 '"'
+          AND ($22),Y
+          ORA ($12),Y
+          ASL $DF,X
+          CLC
+          ORA ($20),Y
+          ADC ($62,X)
+          STA ($12),Y
+          .BYTE $17    ;%00010111
+          .BYTE $DF    ;%11011111
+          .BYTE $17    ;%00010111
+          ORA ($20),Y
+          CMP ($50,X)
+          EOR ($12,X)
+          CLC
+          .BYTE $DF    ;%11011111
+          ASL $F0,X
+          RTS
+          AND ($12),Y
+          CLC
+          .BYTE $DF    ;%11011111
+          ORA $30,X
+          .BYTE $14    ;%00010100
+          ORA ($13),Y
+          .BYTE $12    ;%00010010
+          .BYTE $13    ;%00010011
+          .BYTE $22    ;%00100010 '"'
+          EOR ($30),Y
+          ORA ($50),Y
+          .BYTE $12    ;%00010010
+          ORA $1DBF,Y
+          ORA $3314,Y
+          ROL $17
+          PLP
+          ORA $251A,Y
+          .BYTE $17    ;%00010111
+          ASL $27,X
+          ORA $13,X
+          .BYTE $1A    ;%00011010
+          .BYTE $14    ;%00010100
+          .BYTE $12    ;%00010010
+          BMI L0F0D
+          .BYTE $1A    ;%00011010
+          .BYTE $7F    ;%01111111
+          .BYTE $1C    ;%00011100
+          ORA $1416,Y
+          .BYTE $13    ;%00010011
+          ORA $17,X
+          LSR $17
+          ROL $37
+          ORA $16,X
+          CLI
+          .BYTE $27    ;%00100111 '''
+          ASL $14,X
+          .BYTE $12    ;%00010010
+          AND ($13,X)
+          .BYTE $1B    ;%00011011
+          .BYTE $2F    ;%00101111 '/'
+          ASL $1A1C,X
+          PLP
+          EOR #$3A
+          PLP
+          .BYTE $17    ;%00010111
+          CLC
+          .BYTE $47    ;%01000111 'G'
+          ASL $15,X
+          ASL $25,X
+          .BYTE $14    ;%00010100
+          EOR $14
+          .BYTE $13    ;%00010011
+          AND ($13),Y
+          ASL $1D,X
+          .BYTE $1F    ;%00011111
+          AND #$1B
+          .BYTE $3C    ;%00111100 '<'
+          AND $1C5E,X
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          AND #$17
+          ASL $17,X
+          PLP
+          ASL $25,X
+          BIT $13
+          .BYTE $14    ;%00010100
+          .BYTE $12    ;%00010010
+          AND ($13,X)
+          AND $1B
+          .BYTE $2F    ;%00101111 '/'
+          .BYTE $1A    ;%00011010
+          LSR $17
+          CLC
+          ORA $1C3A,Y
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          ORA $1B18,Y
+          .BYTE $1C    ;%00011100
+          .BYTE $1B    ;%00011011
+          LSR A
+          AND #$18
+          .BYTE $17    ;%00010111
+          ASL $25,X
+          .BYTE $14    ;%00010100
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          ORA $1B16,Y
+          .BYTE $9F    ;%10011111
+          ASL $1C1D,X
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          ORA $1718,Y
+          ASL $15,X
+          .BYTE $14    ;%00010100
+          AND $14
+          .BYTE $23    ;%00100011 '#'
+          STY $23
+          .BYTE $14    ;%00010100
+          ASL $1B,X
+          .BYTE $FF    ;%11111111
+          .BYTE $9F    ;%10011111
+          ASL $1C1D,X
+          .BYTE $1B    ;%00011011
+          .BYTE $1A    ;%00011010
+          ORA $1718,Y
+          AND $14
+          .BYTE $13    ;%00010011
+          .BYTE $14    ;%00010100
+          .BYTE $1A    ;%00011010
+          .BYTE $8F    ;%10001111
+          BRK
+          .BYTE $0C    ;%00001100
+          EOR $4341
+          .BYTE $42    ;%01000010 'B'
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $4F    ;%01001111 'O'
+          .BYTE $4B    ;%01001011 'K'
+          JSR $5250
+          .BYTE $4F    ;%01001111 'O'
+          JSR $9FFF
+          RTI
+          .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $4F    ;%01001111 'O'
+          RTS
+L0F95     .BYTE $FF    ;%11111111
+          .BYTE $FF    ;%11111111
+          .BYTE $2F    ;%00101111 '/'
+          BVS L0F99
+          .BYTE $FF    ;%11111111
+L0F9B     .BYTE $3F    ;%00111111 '?'
+          RTS
+          .BYTE $FF    ;%11111111
+L0F9E     .BYTE $FF    ;%11111111
+          .BYTE $3F    ;%00111111 '?'
+          BVC L0FA1
+L0FA2     .BYTE $BF    ;%10111111
+          RTI
+          .BYTE $5F    ;%01011111 '_'
+          JSR $605F
+          .BYTE $EF    ;%11101111
+          BEQ L0F9B
+          .BYTE $8F    ;%10001111
+          BEQ L0F9E
+          BMI $100F
+          BEQ L0FA2
+L0FB2     RTI
+          .BYTE $5F    ;%01011111 '_'
+          BEQ L0FA6
+          BMI $1037
+          BEQ L0FAA
+L0FBA     JSR $F08F
+          BEQ L0FDF
+          .BYTE $8F    ;%10001111
+          BEQ L0FB2
+L0FC2     JSR $F08F
+          BEQ L0FE7
+          .BYTE $8F    ;%10001111
+          BEQ L0FBA
+L0FCA     BMI $104B
+          BEQ L0FBE
+L0FCE     BVC $103F
+          BEQ L0FC2
+          RTS
+          .BYTE $5F    ;%01011111 '_'
+          BEQ L0FC6
+          BVC $1037
+          BEQ L0FCA
+          RTI
+          .BYTE $8F    ;%10001111
+          BEQ L0FCE
+          BPL L0F8F
+          BEQ L0FC2
+          .BYTE $DF    ;%11011111
+          BEQ L0F95
+          .BYTE $FF    ;%11111111
+          .BYTE $80    ;%10000000
+L0FE7     .BYTE $7F    ;%01111111
+          .BYTE $80    ;%10000000
+          .BYTE $8F    ;%10001111
+          BRK
+          .BYTE $13    ;%00010011
+          .BYTE $54    ;%01010100 'T'
+          PHA
+          EOR $20
+          LSR $5845
+          .BYTE $54    ;%01010100 'T'
+          JSR $4854
+          EOR #$52
+          .BYTE $54    ;%01010100 'T'
+          EOR $2E2E,Y
+          ROL $0020
+          .END
+
+;auto-generated symbols and labels
+ L0315      $0315
+ L02B2      $02B2
+ L02A4      $02A4
+ L0291      $0291
+ L02BC      $02BC
+ L02C5      $02C5
+ L02EB      $02EB
+ L0286      $0286
+ L028E      $028E
+ L0302      $0302
+ L02F4      $02F4
+ L02F2      $02F2
+ L0360      $0360
+ L0370      $0370
+ L0373      $0373
+ L0393      $0393
+ L038E      $038E
+ L03A0      $03A0
+ L03A7      $03A7
+ L03B9      $03B9
+ L03BA      $03BA
+ L03D6      $03D6
+ L03E6      $03E6
+ L03F9      $03F9
+ L0420      $0420
+ L0443      $0443
+ L04F6      $04F6
+ L050E      $050E
+ L0538      $0538
+ L0566      $0566
+ L056F      $056F
+ L0619      $0619
+ L071C      $071C
+ L0722      $0722
+ L071F      $071F
+ L0895      $0895
+ L08EF      $08EF
+ L097F      $097F
+ L0A72      $0A72
+ L0B06      $0B06
+ L0BA6      $0BA6
+ L0BF5      $0BF5
+ L0C1C      $0C1C
+ L0C4D      $0C4D
+ L0C7A      $0C7A
+ L0CB0      $0CB0
+ L0D28      $0D28
+ L0D24      $0D24
+ L0D38      $0D38
+ L0D41      $0D41
+ L0D50      $0D50
+ L0D60      $0D60
+ L0D73      $0D73
+ L0D83      $0D83
+ L0D92      $0D92
+ L0D9E      $0D9E
+ L0DA6      $0DA6
+ L0DAD      $0DAD
+ L0DB9      $0DB9
+ L0DC3      $0DC3
+ L0DCE      $0DCE
+ L0DDE      $0DDE
+ L0DEB      $0DEB
+ L0DFF      $0DFF
+ L0E0C      $0E0C
+ L0E1C      $0E1C
+ L0E3D      $0E3D
+ L0E66      $0E66
+ L0F18      $0F18
+ L0F0D      $0F0D
+ L0F99      $0F99
+ L0FA1      $0FA1
+ L0F9B      $0F9B
+ L0F9E      $0F9E
+ L0FA2      $0FA2
+ L0FA6      $0FA6
+ L0FAA      $0FAA
+ L0FDF      $0FDF
+ L0FB2      $0FB2
+ L0FE7      $0FE7
+ L0FBA      $0FBA
+ L0FBE      $0FBE
+ L0FC2      $0FC2
+ L0FC6      $0FC6
+ L0FCA      $0FCA
+ L0FCE      $0FCE
+ L0F8F      $0F8F
+ L0F95      $0F95
