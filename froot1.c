@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Load the Woz monitor (at FF00)
-    load_mem("monitor.rom", true);
+    load_mem("wozmon.rom", true);
 
     // Parse the command-line arguments
     for (int i=1; i < argc; i++) {
@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
             printf("The parser is currently limited to 16 bytes per row.\n");
             printf("Since ROM files are loaded first, if a ROM and RAM file have overlapping addresses,\n");
             printf("the ROM wins and the memory is marked as read-only\n");
-            printf("The emulator will automatically load the monitor.rom file.\n");
+            printf("The emulator will automatically load the wozmon.rom file.\n");
 
             exit(0);
         } else if (!strcmp(argv[i], "-cassette")) {
@@ -720,10 +720,7 @@ void handle_kb() {
         // Convert a newline to carriage-return
         char_pending = CR;
     } else if (ch == BS || ch == DEL) {
-        // Backspace or delete were originally converted to 3f (?) because that's what
-        // the Apple-1 uses for delete. I patched monitor.rom so that 8 is a backspace
-        // instead of 3F
-        char_pending = BS;
+        char_pending = '_';  // wozmon "backspace"
     } else if (ch == 12) {  // Ctrl-L
         printf("Load from file: ");
         reset_term();
