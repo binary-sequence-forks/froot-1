@@ -20,7 +20,7 @@ rom2bin: rom2bin.o
 install:
 	cp froot1 bin2rom rom2bin $(bindir)
 	mkdir -p $(datadir)/froot-1
-	cp monitor.rom wozbasic.rom wozaci.rom $(datadir)/froot-1
+	cp wozmon.rom wozbasic.rom wozaci.rom $(datadir)/froot-1
 
 clean:
 	rm -f froot1 bin2rom rom2bin *.o
