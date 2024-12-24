@@ -20,8 +20,10 @@ rom2bin: rom2bin.o
 install:
 	cp froot1 bin2rom rom2bin $(bindir)
 	mkdir -p $(datadir)/froot-1
-	cp wozmon.rom wozbasic.rom wozaci.rom programs/apple30th.rom \
-	  programs/apple30th-vector.rom $(datadir)/froot-1
+	cp wozmon.rom wozbasic.rom wozaci.rom \
+	  programs/apple30th.rom programs/apple30th-vector.rom \
+	  programs/hamurabi.woz \
+	  $(datadir)/froot-1
 
 clean:
 	rm -f froot1 bin2rom rom2bin *.o
