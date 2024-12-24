@@ -9,6 +9,7 @@
 #include <ctype.h>
 #include <unistd.h>
 
+#define CTRL_R 18  // RST
 #define LF  0x0A
 #define CR  0x0D
 #define SP  0x20
@@ -702,8 +703,7 @@ void handle_kb() {
 
     ch = getchar();
 
-    if (ch == 18) {                 // Ctrl-R
-        printf("RESET\n");
+    if (ch == CTRL_R) {
         reset6502();
     } else if (ch == 4) {   // Ctrl-D
         debugging = true;
