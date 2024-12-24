@@ -10,8 +10,9 @@ automatically converts lowercase keystrokes to upper-case.
 ## Special Keys
 There are a few special keys recognized by the emulator:\
 Control-R  Reset button\
+Control-L Clear the screen\
 Control-C  Exit the emulator\
-Control-L  Load a text file as input to the Apple-1\
+Control-O  Open/Load a text file as input to the Apple-1\
 
 The Control-L option is useful if you have a Basic program as a
 text file and you want to load it. Copy&paste doesn't work very well

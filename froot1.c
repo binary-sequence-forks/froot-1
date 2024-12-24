@@ -11,7 +11,8 @@
 
 #define CTRL_C  3   // SIGINT
 #define CTRL_D  4   // DBG
-#define CTRL_L  12  // Load file
+#define CTRL_L  12  // CLS
+#define CTRL_O  15  // Open (load) file
 #define CTRL_R  18  // RST
 #define BS  0x08  // Backspace
 #define LF  0x0A  // Linefeed
@@ -727,6 +728,8 @@ void handle_kb() {
         // instead of 3F
         char_pending = BS;
     } else if (ch == CTRL_L) {
+        system("clear");
+    } else if (ch == CTRL_O) {
         printf("Load from file: ");
         reset_term();
         fgets(input_line, sizeof(input_line)-1, stdin);
