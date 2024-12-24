@@ -708,9 +708,6 @@ void handle_kb() {
     } else if (ch == 4) {   // Ctrl-D
         debugging = true;
         printf("Debugging mode.\n");
-    } else if (ch == 3) {           // Ctrl-C
-        reset_term();
-        exit(0);
     } else if (char_pending || reading_file) {
         // If the last character hasn't been processed, push this one back
         ungetc(ch, stdin);
