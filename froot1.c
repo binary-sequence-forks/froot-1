@@ -708,7 +708,6 @@ void handle_kb() {
     ch = getchar();
 
     if (ch == CTRL_R) {
-        printf("RESET\n");
         reset6502();
     } else if (ch == CTRL_D) {
         debugging = true;
