@@ -9,6 +9,8 @@
 #include <ctype.h>
 #include <unistd.h>
 
+#define CTRL_L 12  // CLS
+#define CTRL_O 15  // Open (load) file
 #define LF  0x0A
 #define CR  0x0D
 #define SP  0x20
@@ -722,7 +724,9 @@ void handle_kb() {
         // the Apple-1 uses for delete. I patched monitor.rom so that 8 is a backspace
         // instead of 3F
         char_pending = 8;
-    } else if (ch == 12) {  // Ctrl-L
+    } else if (ch == CTRL_L) {
+        system("clear");
+    } else if (ch == CTRL_O) {
         printf("Load from file: ");
         reset_term();
         fgets(input_line, sizeof(input_line)-1, stdin);
