@@ -9,9 +9,11 @@
 #include <ctype.h>
 #include <unistd.h>
 
+#define CTRL_D  4  // DBG
 #define CTRL_L 12  // CLS
 #define CTRL_O 15  // Open (load) file
 #define CTRL_R 18  // RST
+#define BS  0x08
 #define LF  0x0A
 #define CR  0x0D
 #define SP  0x20
@@ -707,20 +709,20 @@ void handle_kb() {
 
     if (ch == CTRL_R) {
         reset6502();
-    } else if (ch == 4) {   // Ctrl-D
+    } else if (ch == CTRL_D) {
         debugging = true;
         printf("Debugging mode.\n");
     } else if (char_pending || reading_file) {
         // If the last character hasn't been processed, push this one back
         ungetc(ch, stdin);
-    } else if (ch == 10) {
+    } else if (ch == LF) {
         // Convert a newline to carriage-return
-        char_pending = 13;
-    } else if (ch == 8 || ch == 0x7f) {
+        char_pending = CR;
+    } else if (ch == BS || ch == DEL) {
         // Backspace or delete were originally converted to 3f (?) because that's what
         // the Apple-1 uses for delete. I patched monitor.rom so that 8 is a backspace
         // instead of 3F
-        char_pending = 8;
+        char_pending = BS;
     } else if (ch == CTRL_L) {
         system("clear");
     } else if (ch == CTRL_O) {
