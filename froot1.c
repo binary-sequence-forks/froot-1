@@ -1265,7 +1265,7 @@ void disassemble(uint16_t from, uint16_t to) {
                 printf(" #$%02x\n", ram[from+1]);
                 break;
             case REL:
-                printf(" $%04x\n", from+2+(char)ram[from+1]);
+                printf(" %d  ; $%04x\n", (int8_t)ram[from+1], from+inst_size+(int8_t)ram[from+1]);
                 break;
             case NONE:
                 printf("\n");
